@@ -23,9 +23,25 @@ class HanoiGame {
     else return false;
   }
 
-  move(startTowerIdx, endTowerIdx) {}
+  move(startTowerIdx, endTowerIdx) {
+    const isValid = this.isValidMove(startTowerIdx, endTowerIdx);
 
-  isWon() {}
+
+    if(isValid) {
+      let startingTower = this.towers[startTowerIdx];
+      let endingTower = this.towers[endTowerIdx];
+
+      endingTower.push(startingTower.pop());
+      return true;
+    } else return false;
+  }
+
+  isWon() {
+    if (this.towers[1].length === 3) return true;
+    if (this.towers[2].length === 3) return true;
+    else return false;
+
+  }
 
   // the below methods are complete and do not need to be modified
   print() {
