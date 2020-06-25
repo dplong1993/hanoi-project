@@ -1,7 +1,27 @@
 class HanoiGame {
-  constructor() {}
+  constructor(towers = [[3, 2, 1], [], []]) {
+    this.towers = towers;
 
-  isValidMove(startTowerIdx, endTowerIdx) {}
+  }
+
+  isValidMove(startTowerIdx, endTowerIdx) {
+
+    if(startTowerIdx === endTowerIdx) return false;
+    if(endTowerIdx > this.towers.length - 1) return false;
+    if(startTowerIdx > this.towers.length - 1) return false;
+
+    let startingTower = this.towers[startTowerIdx];
+    let diskToBeMoved = startingTower[startingTower.length -1];
+    let endingTower = this.towers[endTowerIdx];
+    let endingTowerDisk = endingTower[endingTower.length -1];
+
+    if(startingTower.length === 0) return false;
+    if(diskToBeMoved > endingTowerDisk) return false;
+
+    if(endingTower.length === 0) return true;
+    else if(endingTowerDisk > diskToBeMoved) return true;
+    else return false;
+  }
 
   move(startTowerIdx, endTowerIdx) {}
 
@@ -44,5 +64,4 @@ class HanoiGame {
     });
   }
 }
-
 module.exports = HanoiGame;
